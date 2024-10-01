@@ -2,12 +2,21 @@ class Node:
     def __init__(self, val):
         self.val = val
         self.next = None
-        
+
+
 class LinkedList:
     def __init__(self, head=None):
         self.head = head
         self.length = 0  # Instance variable to track the length of the linked list
-    
+
+    def insert(self, val):
+        new_node = Node(val)
+        if not self.head:
+            self.head = new_node
+        else:
+            new_node.next = self.head
+            self.head = new_node
+
     def append(self, val):
         newNode = Node(val)
         if not self.head:
@@ -18,7 +27,7 @@ class LinkedList:
                 cur = cur.next
             cur.next = newNode
         self.length += 1  # Increment the length when a new node is added
-    
+
     def reverse(self):
         prev = None
         curr = self.head
@@ -28,6 +37,7 @@ class LinkedList:
             prev = curr
             curr = nxt
         self.head = prev
+
     def traverse(self):
         curr = self.head
         count = 0  # Local variable to count the nodes during traversal
@@ -38,7 +48,7 @@ class LinkedList:
         print("None")
         print(f"Length of linked list (calculated during traverse): {count}")
         print(f"Length of linked list (tracked by append method): {self.length}")
-        
+
     def find_middle(self):
         curr = self.head
         size = 0
@@ -51,6 +61,7 @@ class LinkedList:
             curr = curr.next
 
         return curr.val
+
 
 # Usage
 sll = LinkedList()
